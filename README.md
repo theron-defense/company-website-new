@@ -51,6 +51,8 @@ saved in `localStorage`.
 - `src/input.css` — Tailwind entry: theme tokens + hero grid CSS
 - `css/styles.css` — compiled output (committed for Pages)
 - `js/main.js` — mobile nav and header behavior
+- `js/capabilities.js` — capabilities tab list and 3D drawing viewer
+- `js/vendor/three.min.js` — pinned three.js r128 (vendored, not edited)
 - `assets/logo.svg` — primary logo (SVG wrapper, embedded source artwork)
 - `assets/logo-white.svg` — logo for dark backgrounds
 - `assets/mark.png` — icon mark extracted from source (transparent)

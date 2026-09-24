@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Schibsted+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=13">
+  <link rel="stylesheet" href="css/styles.css?v=15">
   <script>
     document.documentElement.classList.add('js');
   </script>
@@ -68,9 +68,9 @@
       </div>
     </section>
 
-    <section class="py-[clamp(4rem,10vw,7rem)]" id="capabilities">
+    <section class="py-[clamp(2.5rem,5vw,4rem)]" id="capabilities">
       <div class="mx-auto w-[min(100%-2.5rem,1180px)]">
-        <div class="mb-[clamp(2.5rem,5vw,4rem)] max-w-[36rem] reveal-group">
+        <div class="mb-[clamp(1.5rem,3vw,2.25rem)] max-w-[36rem] reveal-group">
           <p class="eyebrow mb-5 text-navy-light reveal">Capabilities</p>
           <h2 class="heading-section mb-4 text-[clamp(2rem,4vw,2.75rem)] leading-[1.15] text-navy-dark reveal">What We Build Today</h2>
           <p class="text-[1.05rem] leading-[1.7] reveal">
@@ -78,47 +78,62 @@
             with us to develop the future of warfare.
           </p>
         </div>
-        <div class="cap-grid reveal-group">
-          <article class="cap-item reveal">
-            <span class="cap-index">01</span>
-            <div class="cap-item-body">
-              <h3>Autonomous Turret</h3>
-              <p>
-                A fully autonomous defense system that is highly
-                portable and counter UAS capable.
-              </p>
-            </div>
-          </article>
-          <article class="cap-item reveal">
-            <span class="cap-index">02</span>
-            <div class="cap-item-body">
-              <h3>Autonomous Strike Vehicle</h3>
-              <p>
-                Long range troop deployed remote strike vehicle,
-                ground to ground.
-              </p>
-            </div>
-          </article>
-          <article class="cap-item reveal">
-            <span class="cap-index">03</span>
-            <div class="cap-item-body">
-              <h3>Our Own AI Models</h3>
-              <p>
-                Models we train here for acquisition, targeting,
-                and control.
-              </p>
-            </div>
-          </article>
-          <article class="cap-item reveal">
-            <span class="cap-index">04</span>
-            <div class="cap-item-body">
-              <h3>NDAA Compliant Hardware</h3>
-              <p>
-                Hardware that closes the supply chain gap left
-                by offshoring.
-              </p>
-            </div>
-          </article>
+        <div class="cap-stage reveal-group">
+          <div class="cap-list" role="tablist" aria-label="Capabilities" aria-orientation="vertical">
+            <button class="cap reveal" type="button" role="tab" id="cap-tab-0" aria-selected="true" aria-controls="cap-viewer" tabindex="0">
+              <span class="cap-num">01</span>
+              <span>
+                <span class="cap-title">Autonomous Turret</span>
+                <span class="cap-desc">
+                  A fully autonomous defense system that is highly
+                  portable and counter UAS capable.
+                </span>
+              </span>
+            </button>
+            <button class="cap reveal" type="button" role="tab" id="cap-tab-1" aria-selected="false" aria-controls="cap-viewer" tabindex="-1">
+              <span class="cap-num">02</span>
+              <span>
+                <span class="cap-title">Autonomous Strike Vehicle</span>
+                <span class="cap-desc">
+                  Long range troop deployed remote strike vehicle,
+                  ground to ground.
+                </span>
+              </span>
+            </button>
+            <button class="cap reveal" type="button" role="tab" id="cap-tab-2" aria-selected="false" aria-controls="cap-viewer" tabindex="-1">
+              <span class="cap-num">03</span>
+              <span>
+                <span class="cap-title">Our Own AI Models</span>
+                <span class="cap-desc">
+                  Models we train here for acquisition, targeting,
+                  and control.
+                </span>
+              </span>
+            </button>
+            <button class="cap reveal" type="button" role="tab" id="cap-tab-3" aria-selected="false" aria-controls="cap-viewer" tabindex="-1">
+              <span class="cap-num">04</span>
+              <span>
+                <span class="cap-title">NDAA Compliant Hardware</span>
+                <span class="cap-desc">
+                  Hardware that closes the supply chain gap left
+                  by offshoring.
+                </span>
+              </span>
+            </button>
+          </div>
+
+          <div class="cap-viewer" id="cap-viewer" role="tabpanel" aria-labelledby="cap-tab-0">
+            <canvas aria-hidden="true"></canvas>
+            <div class="cap-viewer-grain" aria-hidden="true"></div>
+            <div class="cap-viewer-frame" aria-hidden="true"></div>
+            <p class="cap-viewer-fig" id="cap-fig" aria-hidden="true">Fig. 01</p>
+            <button class="cap-viewer-toggle" id="cap-explode" type="button" aria-pressed="true">
+              <span class="cap-viewer-switch" aria-hidden="true"></span>Exploded view
+            </button>
+            <p class="cap-viewer-hint" aria-hidden="true">Drag to rotate</p>
+            <p class="cap-viewer-sr" id="cap-caption" aria-live="polite"></p>
+            <p class="cap-viewer-fallback">Turn on WebGL in your browser to see the 3D drawings.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -247,6 +262,8 @@
     </div>
   </footer>
 
-  <script src="js/main.js?v=4"></script>
+  <script src="js/main.js?v=5"></script>
+  <script src="js/vendor/three.min.js"></script>
+  <script src="js/capabilities.js?v=2"></script>
 </body>
 </html>
