@@ -61,9 +61,33 @@ main {
   font-family: var(--font-display);
 }
 
-.site-logo {
-  width: 120px;
-  height: auto;
+.brand-lockup {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55em;
+  color: var(--color-navy-dark);
+  font-family: var(--font-display);
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.brand-mark {
+  height: 1.3em;
+  width: auto;
+  flex-shrink: 0;
+}
+
+/* The logo wordmark is a grotesque stretched ~1.28x with wide tracking;
+   Inter Bold scaled to match keeps the header text identical to the artwork. */
+.brand-word {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 1em;
+  font-weight: 700;
+  letter-spacing: 0.235em;
+  text-transform: uppercase;
+  transform: scaleX(1.285);
+  transform-origin: left center;
 }
 
 /* —— Header over media vs rest of page —— */
@@ -87,8 +111,9 @@ main {
   -webkit-backdrop-filter: blur(16px);
 }
 
-.site-header.on-hero .logo-on-light {
-  display: none;
+.site-header.on-hero .brand-lockup {
+  color: #fff;
+  text-shadow: 0 1px 12px rgb(3 8 14 / 0.55);
 }
 
 .site-header.on-hero .nav-link {
@@ -100,8 +125,30 @@ main {
   color: #fff;
 }
 
-.site-header.on-hero .logo-on-dark {
-  display: block;
+/* Nav items reuse the section eyebrow treatment, including its display face. */
+.site-nav {
+  font-family: var(--font-display);
+}
+
+.nav-cta {
+  color: var(--color-navy-light);
+  background: transparent;
+}
+
+.nav-cta:hover,
+.site-header.on-hero .nav-cta:hover {
+  border-color: var(--color-navy-light);
+  background: var(--color-navy-light);
+  color: #fff;
+  text-shadow: none;
+}
+
+.site-header.on-hero .nav-cta {
+  color: #fff;
+  text-shadow: 0 1px 12px rgb(3 8 14 / 0.55);
+}
+
+.site-header.on-hero .brand-mark {
   filter: drop-shadow(0 1px 10px rgb(3 8 14 / 0.45));
 }
 
@@ -154,6 +201,45 @@ main {
     );
 }
 
+.hero-button-container{
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  padding-top: 1.75rem;
+}
+
+.hero-btn {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+}
+
+.hero-btn-solid {
+  border-radius: 2px;
+  background: #fff;
+  padding: 0.65rem 1.6rem;
+  color: var(--color-navy-dark);
+  transition: background-color 0.25s ease;
+}
+
+.hero-btn-solid:hover {
+  background: rgb(255 255 255 / 0.85);
+}
+
+.hero-btn-link {
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  text-decoration-thickness: 1px;
+}
+
+.hero-btn-link:hover {
+  color: rgb(255 255 255 / 0.75);
+}
+
 .hero::after {
   content: "";
   position: absolute;
@@ -176,38 +262,72 @@ main {
 .hero-content {
   position: relative;
   z-index: 1;
-  width: min(100% - 2.5rem, 1180px);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-rows: auto minmax(0, 1fr);
+  grid-template-areas:
+    "tl tr"
+    "bl br";
+  gap: 2rem;
+  align-self: stretch;
+  width: min(100% - 2.5rem, 1280px);
   margin: 0 auto;
-  padding: 0 0 4.25rem;
-  max-width: min(100% - 2.5rem, 1180px);
-}
-
-.hero-copy {
-  max-width: 40rem;
-  transform: skewX(-6deg);
+  padding: calc(72px + 1.5rem) 0 2.25rem;
+  max-width: min(100% - 2.5rem, 1380px);
   text-shadow: 0 1px 14px rgb(3 8 14 / 0.35);
 }
 
-.hero-copy h1 {
-  margin: 0 0 0.3rem -0.13em;
+.hero-corner-tl { grid-area: tl; transform: skewX(-6deg); }
+.hero-corner-tr { grid-area: tr; text-align: right; }
+.hero-corner-bl { grid-area: bl; align-self: end; }
+.hero-corner-br { grid-area: br; align-self: end; text-align: right; transform: skewX(-6deg); }
+
+.hero-tagline,
+.hero-series {
+  margin: 0;
   font-family: var(--font-display);
-  font-size: clamp(1.6rem, 2.72vw, 2.32rem);
+  font-size: clamp(0.72rem, 0.95vw, 0.8125rem);
   font-weight: 500;
+  line-height: 1.4;
+  color: rgb(255 255 255 / 0.85);
+}
+
+.hero-series {
+  margin-top: 0.4rem;
+  font-weight: 400;
+  color: rgb(255 255 255 / 0.7);
+}
+
+.hero-corner-tr h1 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(0.95rem, 1.5vw, 1.25rem);
+  font-weight: 800;
   line-height: 1.1;
-  letter-spacing: -0.005em;
+  letter-spacing: -0.02em;
   text-transform: uppercase;
   color: rgb(255 255 255 / 0.92);
 }
 
 .hero-lede {
   margin: 0;
+  max-width: 30rem;
   font-family: var(--font-display);
-  font-size: clamp(0.8rem, 1.1vw, 0.95rem);
+  font-size: clamp(0.85rem, 1.1vw, 0.95rem);
   font-weight: 400;
-  line-height: 1.5;
-  letter-spacing: 0.1em;
+  line-height: 1.65;
+  color: rgb(255 255 255 / 0.9);
+}
+
+.hero-wordmark {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(0.95rem, 1.5vw, 1.25rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.02em;
   text-transform: uppercase;
-  color: rgb(255 255 255 / 0.75);
+  color: #fff;
 }
 
 /* —— Scroll reveals —— */
@@ -288,11 +408,11 @@ main {
 .photo-chapter-content {
   position: relative;
   z-index: 1;
-  width: min(100% - 2.5rem, 1180px);
+  width: min(100% - 2.5rem, 1280px);
   margin: 0 auto;
   padding: 8rem 0 6rem;
   max-width: 40rem;
-  margin-left: max(1.25rem, calc((100% - 1180px) / 2));
+  margin-left: max(1.25rem, calc((100% - 1280px) / 2));
   text-shadow: 0 1px 18px rgb(3 8 14 / 0.45);
 }
 
@@ -534,7 +654,7 @@ main p {
   flex-direction: column;
   justify-content: space-between;
   gap: 3.5rem;
-  width: min(100% - 2.5rem, 1180px);
+  width: min(100% - 2.5rem, 1280px);
   margin: 0 auto;
   padding: 3.25rem 0 1.5rem;
   min-height: 20rem;
@@ -614,11 +734,28 @@ main p {
 
 @media (max-width: 768px) {
   .hero-content {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto minmax(0, 1fr) auto;
+    grid-template-areas:
+      "tl"
+      "tr"
+      "bl"
+      "br";
+    gap: 1.25rem;
     padding-bottom: 3.5rem;
   }
 
-  .hero-copy {
+  .hero-corner-tr,
+  .hero-corner-br {
+    text-align: left;
+  }
+
+  .hero-lede {
     max-width: 40rem;
+  }
+
+  .hero-button-container {
+    gap: 1.25rem;
   }
 
   .hero::after {
@@ -635,8 +772,8 @@ main p {
     margin-right: auto;
   }
 
-  .site-logo {
-    width: min(120px, 34vw);
+  .brand-lockup {
+    font-size: 0.875rem;
   }
 }
 

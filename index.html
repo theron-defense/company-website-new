@@ -9,18 +9,20 @@
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Schibsted+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=12">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Schibsted+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css?v=13">
   <script>
     document.documentElement.classList.add('js');
   </script>
 </head>
 <body class="bg-white font-sans text-base leading-[1.6] text-ink antialiased">
   <header class="site-header on-hero fixed inset-x-0 top-0 z-50 h-[72px] border-b border-line bg-white/90 backdrop-blur-md">
-    <div class="mx-auto flex h-full w-[min(100%-2.5rem,1180px)] items-center justify-between gap-4">
-      <a href="#top" class="shrink-0" aria-label="Theron home">
-        <img src="assets/logo.svg" alt="Theron" class="site-logo logo-on-light" width="158" height="73">
-        <img src="assets/logo-white.svg" alt="Theron" class="site-logo logo-on-dark hidden" width="158" height="73">
+    <div class="mx-auto flex h-full w-[min(100%-2.5rem,1280px)] items-center justify-between gap-4">
+      <a href="#top" class="brand-lockup shrink-0" aria-label="Theron home">
+        <svg class="brand-mark" viewBox="95 123 664 446" aria-hidden="true" focusable="false">
+          <path fill="currentColor" d="M 95.18 567.50 C 257.24 462.46 419.33 357.32 584.18 256.69 C 476.97 346.95 366.27 433.02 258.00 521.98 L 401.71 522.02 L 357.05 567.91 Z M 584.49 288.42 L 758.01 123.96 L 545.28 249.40 L 614.15 232.31 Z"/>
+        </svg>
+        <span class="brand-word">Theron</span>
       </a>
       <div class="flex items-center gap-5 md:gap-8">
         <button class="nav-toggle peer -mr-1 flex shrink-0 cursor-pointer flex-col justify-center gap-1.5 border-0 bg-transparent p-2 md:hidden" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
@@ -28,12 +30,12 @@
           <span class="nav-bar block h-0.5 w-6 bg-navy transition-transform duration-300"></span>
         </button>
         <nav class="site-nav flex items-center gap-8 max-md:pointer-events-none max-md:fixed max-md:inset-x-0 max-md:top-[72px] max-md:-translate-y-[110%] max-md:flex-col max-md:items-stretch max-md:gap-0 max-md:border-b max-md:border-line max-md:bg-white max-md:px-5 max-md:pt-2 max-md:pb-6 max-md:opacity-0 max-md:transition-all max-md:duration-300 max-md:peer-aria-expanded:pointer-events-auto max-md:peer-aria-expanded:translate-y-0 max-md:peer-aria-expanded:opacity-100" id="site-nav">
-          <a href="#capabilities" class="nav-link text-[0.8125rem] font-medium uppercase tracking-[0.04em] transition-colors hover:text-navy-light max-md:border-b max-md:border-line max-md:py-3.5">Capabilities</a>
-          <a href="#mission" class="nav-link text-[0.8125rem] font-medium uppercase tracking-[0.04em] transition-colors hover:text-navy-light max-md:border-b max-md:border-line max-md:py-3.5">Mission</a>
-          <a href="#vision" class="nav-link text-[0.8125rem] font-medium uppercase tracking-[0.04em] transition-colors hover:text-navy-light max-md:border-b max-md:border-line max-md:py-3.5">Vision</a>
-          <a href="#about" class="nav-link text-[0.8125rem] font-medium uppercase tracking-[0.04em] transition-colors hover:text-navy-light max-md:border-b max-md:border-line max-md:py-3.5">About</a>
-          <a href="#team" class="nav-link text-[0.8125rem] font-medium uppercase tracking-[0.04em] transition-colors hover:text-navy-light max-md:border-b max-md:border-line max-md:py-3.5">Team</a>
-          <a href="#contact" class="rounded-[2px] bg-navy-light px-5 py-2.5 text-[0.8125rem] font-medium uppercase tracking-[0.04em] text-white transition-colors hover:bg-navy max-md:mt-3 max-md:text-center">Contact</a>
+          <a href="#capabilities" class="nav-link eyebrow transition-colors hover:text-navy-light max-md:border-b max-md:border-line max-md:py-3.5">Capabilities</a>
+          <a href="#mission" class="nav-link eyebrow transition-colors hover:text-navy-light max-md:border-b max-md:border-line max-md:py-3.5">Mission</a>
+          <a href="#vision" class="nav-link eyebrow transition-colors hover:text-navy-light max-md:border-b max-md:border-line max-md:py-3.5">Vision</a>
+          <a href="#about" class="nav-link eyebrow transition-colors hover:text-navy-light max-md:border-b max-md:border-line max-md:py-3.5">About</a>
+          <a href="#team" class="nav-link eyebrow transition-colors hover:text-navy-light max-md:border-b max-md:border-line max-md:py-3.5">Team</a>
+          <a href="#contact" class="nav-cta eyebrow rounded-[2px] border border-current px-5 py-2 transition-colors max-md:mt-3 max-md:text-center">Contact</a>
         </nav>
       </div>
     </div>
@@ -46,9 +48,22 @@
       </video>
       <div class="hero-scrim" aria-hidden="true"></div>
       <div class="hero-content">
-        <div class="hero-copy reveal-group">
+        <div class="hero-corner hero-corner-tl reveal-group">
+          <p class="hero-tagline reveal">Autonomous systems for the field</p>
+        </div>
+        <div class="hero-corner hero-corner-tr reveal-group">
           <h1 class="reveal">Defense at Scale</h1>
-          <p class="hero-lede reveal">AI system protecting the West</p>
+          <p class="hero-series reveal">Theron field series</p>
+        </div>
+        <div class="hero-corner hero-corner-bl reveal-group">
+          <p class="hero-lede reveal">Fully autonomous products, usable in the field today. We work towards the final weapon, an AI system protecting the West.</p>
+          <div class="hero-button-container reveal">
+            <a class="hero-btn hero-btn-solid" href="#capabilities">See capabilities</a>
+            <a class="hero-btn hero-btn-link" href="#contact">Talk to our team</a>
+          </div>
+        </div>
+        <div class="hero-corner hero-corner-br reveal-group">
+          <p class="hero-wordmark reveal">Theron Defense</p>
         </div>
       </div>
     </section>
