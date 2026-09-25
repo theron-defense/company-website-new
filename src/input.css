@@ -548,60 +548,6 @@ main p {
   cursor: grabbing;
 }
 
-.cap-viewer-toggle {
-  position: absolute;
-  top: 0;
-  right: 0;
-  appearance: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 6px 10px 6px 8px;
-  border: 1px solid var(--color-line);
-  background: #fff;
-  font: inherit;
-  font-size: 0.75rem;
-  color: var(--v-ink);
-  cursor: pointer;
-}
-
-.cap-viewer-toggle:hover {
-  border-color: var(--v-ink);
-}
-
-.cap-viewer-toggle:focus-visible {
-  outline: 2px solid var(--color-navy-light);
-  outline-offset: 2px;
-}
-
-.cap-viewer-switch {
-  position: relative;
-  flex: none;
-  width: 22px;
-  height: 12px;
-  border: 1px solid currentColor;
-  border-radius: 6px;
-}
-
-.cap-viewer-switch::after {
-  content: "";
-  position: absolute;
-  top: 1px;
-  left: 1px;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: currentColor;
-  transition:
-    transform 0.2s ease,
-    background-color 0.2s ease;
-}
-
-.cap-viewer-toggle[aria-pressed="true"] .cap-viewer-switch::after {
-  transform: translateX(10px);
-  background: var(--cap-accent);
-}
-
 .cap-viewer-fallback {
   display: none;
   position: absolute;
@@ -616,10 +562,6 @@ main p {
 
 .cap-viewer.no-webgl .cap-viewer-fallback {
   display: grid;
-}
-
-.cap-viewer.no-webgl .cap-viewer-toggle {
-  display: none;
 }
 
 .cap-viewer-sr {
@@ -643,11 +585,6 @@ main p {
     background: #fff;
     margin-inline: -1.25rem;
     height: clamp(18rem, 76vw, 26rem);
-  }
-
-  .cap-viewer-toggle {
-    top: 4px;
-    right: 1.5rem;
   }
 }
 
@@ -674,8 +611,7 @@ main p {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .cap,
-  .cap-viewer-switch::after {
+  .cap {
     transition: none;
   }
 }

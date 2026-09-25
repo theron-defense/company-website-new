@@ -112,9 +112,6 @@
 
           <div class="cap-viewer" id="cap-viewer" role="tabpanel" aria-labelledby="cap-tab-0">
             <canvas aria-hidden="true"></canvas>
-            <button class="cap-viewer-toggle" id="cap-explode" type="button" aria-pressed="true">
-              <span class="cap-viewer-switch" aria-hidden="true"></span>Exploded view
-            </button>
             <p class="cap-viewer-sr" id="cap-caption" aria-live="polite"></p>
             <p class="cap-viewer-fallback">Turn on WebGL in your browser to see the 3D drawings.</p>
           </div>
@@ -267,6 +264,6 @@
 
   <script src="js/main.js?v=7"></script>
   <script src="js/vendor/three.min.js"></script>
-  <script src="js/capabilities.js?v=4"></script>
+  <script type="module" src="js/capabilities/index.js?v=5"></script>
 </body>
 </html>
