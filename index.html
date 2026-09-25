@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Schibsted+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=15">
+  <link rel="stylesheet" href="css/styles.css?v=21">
   <script>
     document.documentElement.classList.add('js');
   </script>
@@ -19,10 +19,8 @@
   <header class="site-header on-hero fixed inset-x-0 top-0 z-50 h-[72px] border-b border-line bg-white/90 backdrop-blur-md">
     <div class="mx-auto flex h-full w-[min(100%-2.5rem,1280px)] items-center justify-between gap-4">
       <a href="#top" class="brand-lockup shrink-0" aria-label="Theron home">
-        <svg class="brand-mark" viewBox="95 123 664 446" aria-hidden="true" focusable="false">
-          <path fill="currentColor" d="M 95.18 567.50 C 257.24 462.46 419.33 357.32 584.18 256.69 C 476.97 346.95 366.27 433.02 258.00 521.98 L 401.71 522.02 L 357.05 567.91 Z M 584.49 288.42 L 758.01 123.96 L 545.28 249.40 L 614.15 232.31 Z"/>
-        </svg>
-        <span class="brand-word">Theron</span>
+        <img class="brand-logo brand-logo-on-light" src="assets/logo.svg" alt="" width="1045" height="480">
+        <img class="brand-logo brand-logo-on-dark" src="assets/logo-white.svg" alt="" width="1045" height="480">
       </a>
       <div class="flex items-center gap-5 md:gap-8">
         <button class="nav-toggle peer -mr-1 flex shrink-0 cursor-pointer flex-col justify-center gap-1.5 border-0 bg-transparent p-2 md:hidden" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
@@ -48,13 +46,6 @@
       </video>
       <div class="hero-scrim" aria-hidden="true"></div>
       <div class="hero-content">
-        <div class="hero-corner hero-corner-tl reveal-group">
-          <p class="hero-tagline reveal">Autonomous systems for the field</p>
-        </div>
-        <div class="hero-corner hero-corner-tr reveal-group">
-          <h1 class="reveal">Defense at Scale</h1>
-          <p class="hero-series reveal">Theron field series</p>
-        </div>
         <div class="hero-corner hero-corner-bl reveal-group">
           <p class="hero-lede reveal">Fully autonomous products, usable in the field today. We work towards the final weapon, an AI system protecting the West.</p>
           <div class="hero-button-container reveal">
@@ -62,14 +53,11 @@
             <a class="hero-btn hero-btn-link" href="#contact">Talk to our team</a>
           </div>
         </div>
-        <div class="hero-corner hero-corner-br reveal-group">
-          <p class="hero-wordmark reveal">Theron Defense</p>
-        </div>
       </div>
     </section>
 
     <section class="py-[clamp(2.5rem,5vw,4rem)]" id="capabilities">
-      <div class="mx-auto w-[min(100%-2.5rem,1180px)]">
+      <div class="mx-auto w-[min(100%-2.5rem,1280px)]">
         <div class="mb-[clamp(1.5rem,3vw,2.25rem)] max-w-[36rem] reveal-group">
           <p class="eyebrow mb-5 text-navy-light reveal">Capabilities</p>
           <h2 class="heading-section mb-4 text-[clamp(2rem,4vw,2.75rem)] leading-[1.15] text-navy-dark reveal">What We Build Today</h2>
@@ -124,13 +112,9 @@
 
           <div class="cap-viewer" id="cap-viewer" role="tabpanel" aria-labelledby="cap-tab-0">
             <canvas aria-hidden="true"></canvas>
-            <div class="cap-viewer-grain" aria-hidden="true"></div>
-            <div class="cap-viewer-frame" aria-hidden="true"></div>
-            <p class="cap-viewer-fig" id="cap-fig" aria-hidden="true">Fig. 01</p>
             <button class="cap-viewer-toggle" id="cap-explode" type="button" aria-pressed="true">
               <span class="cap-viewer-switch" aria-hidden="true"></span>Exploded view
             </button>
-            <p class="cap-viewer-hint" aria-hidden="true">Drag to rotate</p>
             <p class="cap-viewer-sr" id="cap-caption" aria-live="polite"></p>
             <p class="cap-viewer-fallback">Turn on WebGL in your browser to see the 3D drawings.</p>
           </div>
@@ -152,13 +136,21 @@
       </div>
     </section>
 
-    <section class="bg-paper py-[clamp(4rem,10vw,7rem)]" id="vision">
-      <div class="mx-auto grid w-[min(100%-2.5rem,1180px)] items-start gap-[clamp(2rem,5vw,5rem)] md:grid-cols-[1fr_1.2fr]">
-        <div class="reveal-group">
-          <p class="eyebrow mb-5 text-navy-light reveal">Vision</p>
-          <h2 class="heading-section text-[clamp(2rem,4vw,2.75rem)] leading-[1.15] text-navy-dark reveal">The Final Weapon</h2>
+    <section class="bg-paper py-[clamp(3rem,7vw,5rem)]" id="vision">
+      <div class="vision-layout mx-auto w-[min(100%-2.5rem,1280px)]">
+        <div class="vision-plate reveal-group" id="vision-stage" role="tabpanel" aria-labelledby="vision-tab-2">
+          <div class="vision-marks" aria-hidden="true">
+            <span></span><span></span><span></span><span></span>
+          </div>
+          <div class="vision-stage reveal">
+            <img src="assets/vision/actuator-assembled.png" alt="Actuator assembly, plan view" width="501" height="440" loading="lazy" decoding="async">
+            <img src="assets/vision/actuator-exploded.png" alt="Actuator, exploded view" width="298" height="444" loading="lazy" decoding="async">
+            <img src="assets/vision/actuator-exploded-45.png" alt="Actuator, exploded view at 45 degrees" class="is-active" width="409" height="448" loading="lazy" decoding="async">
+          </div>
         </div>
-        <div class="prose-col text-[1.05rem] leading-[1.75] reveal-group">
+        <div class="vision-copy prose-col text-[1.05rem] leading-[1.75] reveal-group">
+          <p class="eyebrow mb-5 text-navy-light reveal">Vision</p>
+          <h2 class="heading-section mb-6 text-[clamp(2rem,3.6vw,3rem)] leading-[1.08] text-navy-dark reveal">The Final Weapon.</h2>
           <p class="reveal">
             Our plan starts with products in the field today.
             Hardware and software that operators can actually use.
@@ -174,11 +166,22 @@
             We are only at the beginning of this story.
           </p>
         </div>
+        <div class="vision-thumbs reveal-group" role="tablist" aria-label="Actuator drawings">
+          <button class="vision-thumb reveal" type="button" role="tab" id="vision-tab-0" aria-selected="false" aria-controls="vision-stage" tabindex="-1" aria-label="Assembled view">
+            <img src="assets/vision/actuator-assembled.png" alt="" width="501" height="440" loading="lazy" decoding="async" aria-hidden="true">
+          </button>
+          <button class="vision-thumb reveal" type="button" role="tab" id="vision-tab-1" aria-selected="false" aria-controls="vision-stage" tabindex="-1" aria-label="Exploded view">
+            <img src="assets/vision/actuator-exploded.png" alt="" width="298" height="444" loading="lazy" decoding="async" aria-hidden="true">
+          </button>
+          <button class="vision-thumb reveal" type="button" role="tab" id="vision-tab-2" aria-selected="true" aria-controls="vision-stage" tabindex="0" aria-label="Exploded view at 45 degrees">
+            <img src="assets/vision/actuator-exploded-45.png" alt="" width="409" height="448" loading="lazy" decoding="async" aria-hidden="true">
+          </button>
+        </div>
       </div>
     </section>
 
     <section class="py-[clamp(4rem,10vw,7rem)]" id="about">
-      <div class="mx-auto grid w-[min(100%-2.5rem,1180px)] items-start gap-[clamp(2rem,5vw,5rem)] md:grid-cols-[1fr_1.2fr]">
+      <div class="mx-auto grid w-[min(100%-2.5rem,1280px)] items-start gap-[clamp(2rem,5vw,5rem)] md:grid-cols-[1fr_1.2fr]">
         <div class="reveal-group">
           <p class="eyebrow mb-5 text-navy-light reveal">About</p>
           <h2 class="heading-section text-[clamp(2rem,4vw,2.75rem)] leading-[1.15] text-navy-dark reveal">Real Hardware, Not Renderings</h2>
@@ -262,8 +265,8 @@
     </div>
   </footer>
 
-  <script src="js/main.js?v=5"></script>
+  <script src="js/main.js?v=7"></script>
   <script src="js/vendor/three.min.js"></script>
-  <script src="js/capabilities.js?v=2"></script>
+  <script src="js/capabilities.js?v=4"></script>
 </body>
 </html>

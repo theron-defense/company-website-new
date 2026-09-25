@@ -64,30 +64,18 @@ main {
 .brand-lockup {
   display: inline-flex;
   align-items: center;
-  gap: 0.55em;
-  color: var(--color-navy-dark);
-  font-family: var(--font-display);
   font-size: 1rem;
   line-height: 1;
 }
 
-.brand-mark {
-  height: 1.3em;
+.brand-logo {
+  height: 3.25em;
   width: auto;
   flex-shrink: 0;
 }
 
-/* The logo wordmark is a grotesque stretched ~1.28x with wide tracking;
-   Inter Bold scaled to match keeps the header text identical to the artwork. */
-.brand-word {
-  display: inline-block;
-  font-family: var(--font-sans);
-  font-size: 1em;
-  font-weight: 700;
-  letter-spacing: 0.235em;
-  text-transform: uppercase;
-  transform: scaleX(1.285);
-  transform-origin: left center;
+.brand-logo-on-dark {
+  display: none;
 }
 
 /* —— Header over media vs rest of page —— */
@@ -109,11 +97,6 @@ main {
   background: rgb(10 16 24 / 0.55);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-}
-
-.site-header.on-hero .brand-lockup {
-  color: #fff;
-  text-shadow: 0 1px 12px rgb(3 8 14 / 0.55);
 }
 
 .site-header.on-hero .nav-link {
@@ -148,7 +131,12 @@ main {
   text-shadow: 0 1px 12px rgb(3 8 14 / 0.55);
 }
 
-.site-header.on-hero .brand-mark {
+.site-header.on-hero .brand-logo-on-light {
+  display: none;
+}
+
+.site-header.on-hero .brand-logo-on-dark {
+  display: block;
   filter: drop-shadow(0 1px 10px rgb(3 8 14 / 0.45));
 }
 
@@ -461,8 +449,6 @@ main p {
   --cap-card-hover: #F1EEE9;
   --cap-card-active: #ECE8E1;
   /* drawing viewer, warmed to sit against the paper neutrals */
-  --v-center: #FCFBFA;
-  --v-edge: #CFCEC9;
   --v-line: #1B1D22;
   --v-fill: #FFFFFF;
   --v-ink: #1B1D22;
@@ -545,14 +531,7 @@ main p {
 
 .cap-viewer {
   position: relative;
-  overflow: hidden;
   color: var(--v-meta);
-  background: var(--v-edge);
-  background: radial-gradient(
-    ellipse 75% 70% at 50% 46%,
-    var(--v-center) 0%,
-    var(--v-edge) 100%
-  );
 }
 
 .cap-viewer canvas {
@@ -569,53 +548,17 @@ main p {
   cursor: grabbing;
 }
 
-.cap-viewer-grain {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.13;
-  mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .6 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-
-.cap-viewer-frame {
-  position: absolute;
-  inset: 14px;
-  border: 1px solid var(--v-frame);
-  pointer-events: none;
-}
-
-.cap-viewer-fig {
-  position: absolute;
-  top: 30px;
-  left: 32px;
-  margin: 0;
-  font-size: 0.8125rem;
-  font-variant-numeric: tabular-nums;
-  color: var(--v-ink);
-  pointer-events: none;
-}
-
-.cap-viewer-hint {
-  position: absolute;
-  bottom: 30px;
-  left: 32px;
-  margin: 0;
-  font-size: 0.75rem;
-  pointer-events: none;
-}
-
 .cap-viewer-toggle {
   position: absolute;
-  top: 24px;
-  right: 26px;
+  top: 0;
+  right: 0;
   appearance: none;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   padding: 6px 10px 6px 8px;
-  border: 1px solid var(--v-frame);
-  background: transparent;
+  border: 1px solid var(--color-line);
+  background: #fff;
   font: inherit;
   font-size: 0.75rem;
   color: var(--v-ink);
@@ -675,7 +618,6 @@ main p {
   display: grid;
 }
 
-.cap-viewer.no-webgl .cap-viewer-hint,
 .cap-viewer.no-webgl .cap-viewer-toggle {
   display: none;
 }
@@ -697,30 +639,23 @@ main p {
     position: sticky;
     top: 72px;
     z-index: 2;
+    /* Matches the page so the cards can't scroll through the transparent canvas. */
+    background: #fff;
     margin-inline: -1.25rem;
-    height: clamp(17rem, 70vw, 24rem);
-  }
-
-  .cap-viewer-fig {
-    top: 26px;
-    left: 28px;
+    height: clamp(18rem, 76vw, 26rem);
   }
 
   .cap-viewer-toggle {
-    top: 20px;
-    right: 22px;
-  }
-
-  .cap-viewer-hint {
-    display: none;
+    top: 4px;
+    right: 1.5rem;
   }
 }
 
 /* Desktop: the viewer stretches to the tab list so the whole section fits one screen. */
 @media (min-width: 900px) {
   .cap-stage {
-    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
-    gap: 0.75rem;
+    grid-template-columns: minmax(0, 4.5fr) minmax(0, 7.5fr);
+    gap: clamp(1.5rem, 3vw, 3rem);
   }
 
   .cap-list {
@@ -728,11 +663,13 @@ main p {
   }
 
   .cap {
+    flex: 1;
+    align-content: center;
     padding: 1.15rem 1.5rem 1.25rem;
   }
 
   .cap-viewer {
-    min-height: 24rem;
+    min-height: 34rem;
   }
 }
 
@@ -745,6 +682,188 @@ main p {
 
 .prose-col p + p {
   margin-top: 1.25rem;
+}
+
+/* —— Vision: drawing plate + figure selector (drawings are transparent line art) —— */
+.vision-layout {
+  display: grid;
+  gap: clamp(1.75rem, 4vw, 3rem) clamp(2rem, 5vw, 4.5rem);
+}
+
+.vision-plate {
+  position: relative;
+  min-height: clamp(16rem, 30vw, 24rem);
+}
+
+/* Registration marks: corner brackets plus a tick at the middle of each edge. */
+.vision-marks span {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border: 0 solid var(--v-frame);
+}
+
+.vision-marks span:nth-child(1) {
+  top: 0;
+  left: 0;
+  border-top-width: 1px;
+  border-left-width: 1px;
+}
+
+.vision-marks span:nth-child(2) {
+  top: 0;
+  right: 0;
+  border-top-width: 1px;
+  border-right-width: 1px;
+}
+
+.vision-marks span:nth-child(3) {
+  bottom: 0;
+  left: 0;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+}
+
+.vision-marks span:nth-child(4) {
+  bottom: 0;
+  right: 0;
+  border-bottom-width: 1px;
+  border-right-width: 1px;
+}
+
+.vision-marks::before,
+.vision-marks::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  width: 11px;
+  margin-left: -5.5px;
+  border-top: 1px solid var(--v-frame);
+}
+
+.vision-marks::before { top: 0; }
+.vision-marks::after { bottom: 0; }
+
+.vision-plate::before,
+.vision-plate::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  height: 11px;
+  margin-top: -5.5px;
+  border-left: 1px solid var(--v-frame);
+}
+
+.vision-plate::before { left: 0; }
+.vision-plate::after { right: 0; }
+
+.vision-stage {
+  position: absolute;
+  inset: clamp(1.5rem, 3.5vw, 2.75rem);
+}
+
+/* One drawing shows at a time; the default is set in the markup so it also
+   works without JS. */
+.vision-stage img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.vision-stage img.is-active {
+  opacity: 1;
+}
+
+.vision-thumbs {
+  display: flex;
+  gap: clamp(1rem, 2.5vw, 1.75rem);
+  border-top: 1px solid var(--color-line);
+}
+
+.vision-thumb {
+  appearance: none;
+  margin: 0;
+  border: 0;
+  padding: 1rem 0 0.25rem;
+  background: transparent;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  box-shadow: inset 0 2px 0 transparent;
+  transition: box-shadow 0.2s ease;
+}
+
+.vision-thumb[aria-selected="true"] {
+  box-shadow: inset 0 2px 0 var(--color-navy);
+}
+
+.vision-thumb:focus-visible {
+  outline: 2px solid var(--color-navy-light);
+  outline-offset: 3px;
+}
+
+.vision-thumb img {
+  display: block;
+  height: clamp(2.5rem, 4vw, 3.25rem);
+  width: clamp(3rem, 5vw, 4rem);
+  object-fit: contain;
+  opacity: 0.45;
+  transition: opacity 0.2s ease;
+}
+
+.vision-thumb:hover img {
+  opacity: 0.75;
+}
+
+.vision-thumb[aria-selected="true"] img {
+  opacity: 1;
+}
+
+@media (min-width: 900px) {
+  .vision-layout {
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+    grid-template-rows: 1fr auto;
+  }
+
+  .vision-plate {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+  }
+
+  .vision-copy {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .vision-thumbs {
+    grid-column: 2;
+    grid-row: 2;
+    align-self: end;
+  }
+}
+
+/* Phones read the copy first, then the drawing, then the selector under it. */
+@media (max-width: 899px) {
+  .vision-copy { order: 1; }
+
+  .vision-plate {
+    order: 2;
+    min-height: clamp(15rem, 62vw, 21rem);
+  }
+
+  .vision-thumbs { order: 3; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vision-stage img,
+  .vision-thumb,
+  .vision-thumb img {
+    transition: none;
+  }
 }
 
 .founder-split {

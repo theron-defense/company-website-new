@@ -3,10 +3,10 @@
   'use strict';
 
   var META = [
-    { fig: '01', title: 'Autonomous turret' },
-    { fig: '02', title: 'Autonomous strike vehicle' },
-    { fig: '03', title: 'Onboard compute module' },
-    { fig: '04', title: 'Brushless drive motor' }
+    { title: 'Autonomous turret' },
+    { title: 'Autonomous strike vehicle' },
+    { title: 'Onboard compute module' },
+    { title: 'Brushless drive motor' }
   ];
 
   // Camera elevation (rad), model tilt [x, z], starting yaw, zoom.
@@ -25,7 +25,6 @@
   var tabs = Array.prototype.slice.call(stage.querySelectorAll('.cap'));
   var toggle = document.getElementById('cap-explode');
   var els = {
-    fig: document.getElementById('cap-fig'),
     caption: document.getElementById('cap-caption')
   };
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -36,7 +35,6 @@
 
   function updateHud() {
     var m = META[active];
-    els.fig.textContent = 'Fig. ' + m.fig;
     els.caption.textContent =
       'Line drawing of the ' + m.title.toLowerCase() + ', ' + (exploded ? 'exploded' : 'assembled') + '.';
   }
@@ -588,10 +586,14 @@
     });
     var camera = new THREE.PerspectiveCamera(30, 1, 0.1, 100);
 
+    // The bounding sphere circumscribes each model, so a plain fit leaves a
+    // margin no drawing ever reaches. FILL pulls the camera in to reclaim it.
+    var FILL = 1.12;
+
     function fitDist(r) {
       var vf = (camera.fov * Math.PI) / 180;
       var hf = 2 * Math.atan(Math.tan(vf / 2) * camera.aspect);
-      return r / Math.sin(Math.min(vf, hf) / 2);
+      return r / Math.sin(Math.min(vf, hf) / 2) / FILL;
     }
     function resize() {
       var rect = viewer.getBoundingClientRect();
@@ -620,7 +622,7 @@
     var yawVel = 0;
     var dragging = false;
     var idleUntil = 0;
-    var camDist = fitDist(models[0].r0 * 1.18) / VIEWS[0].zoom;
+    var camDist = fitDist(models[0].r0 * 1.04) / VIEWS[0].zoom;
     var camEl = VIEWS[0].el;
     var running = false;
     var inView = true;
@@ -660,7 +662,7 @@
         }
       }
       var am = models[active];
-      var r = THREE.MathUtils.lerp(am.r0 * 1.18, am.r1, am.t);
+      var r = THREE.MathUtils.lerp(am.r0 * 1.04, am.r1, am.t);
       camDist += (fitDist(r) / am.view.zoom - camDist) * k(3);
       camEl += (am.view.el - camEl) * k(3);
       camera.position.set(0, Math.sin(camEl) * camDist, Math.cos(camEl) * camDist);

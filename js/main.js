@@ -179,9 +179,44 @@
     });
   }
 
+  function initVisionFigures() {
+    var tabs = document.querySelectorAll('.vision-thumb');
+    var drawings = document.querySelectorAll('.vision-stage img');
+    var panel = document.getElementById('vision-stage');
+    if (tabs.length !== drawings.length || !tabs.length) return;
+
+    function select(index) {
+      tabs.forEach(function (tab, i) {
+        var on = i === index;
+        tab.setAttribute('aria-selected', String(on));
+        tab.tabIndex = on ? 0 : -1;
+      });
+      drawings.forEach(function (drawing, i) {
+        drawing.classList.toggle('is-active', i === index);
+      });
+      if (panel) panel.setAttribute('aria-labelledby', tabs[index].id);
+    }
+
+    tabs.forEach(function (tab, i) {
+      tab.addEventListener('click', function () {
+        select(i);
+      });
+
+      tab.addEventListener('keydown', function (event) {
+        var step = event.key === 'ArrowRight' ? 1 : event.key === 'ArrowLeft' ? -1 : 0;
+        if (!step) return;
+        event.preventDefault();
+        var next = (i + step + tabs.length) % tabs.length;
+        select(next);
+        tabs[next].focus();
+      });
+    });
+  }
+
   onScroll();
   startParallax();
   syncVideo();
   revealGroups();
   initSlideshows();
+  initVisionFigures();
 })();
