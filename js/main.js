@@ -152,21 +152,60 @@
 
   function initVisionFigures() {
     var tabs = document.querySelectorAll('.vision-thumb');
-    var drawings = document.querySelectorAll('.vision-stage img');
+    var clips = document.querySelectorAll('.vision-stage video');
     var panel = document.getElementById('vision-stage');
-    if (tabs.length !== drawings.length || !tabs.length) return;
+    if (tabs.length !== clips.length || !tabs.length) return;
+
+    var active = 0;
+    var inView = false;
+
+    function syncClips() {
+      clips.forEach(function (clip, i) {
+        if (i === active && inView && !reduceMotion.matches) {
+          var play = clip.play();
+          if (play && typeof play.catch === 'function') {
+            play.catch(function () {});
+          }
+        } else {
+          clip.pause();
+        }
+      });
+    }
 
     function select(index) {
+      if (index !== active) {
+        clips[active].currentTime = 0;
+      }
+      active = index;
       tabs.forEach(function (tab, i) {
         var on = i === index;
         tab.setAttribute('aria-selected', String(on));
         tab.tabIndex = on ? 0 : -1;
       });
-      drawings.forEach(function (drawing, i) {
-        drawing.classList.toggle('is-active', i === index);
+      clips.forEach(function (clip, i) {
+        clip.classList.toggle('is-active', i === index);
       });
       if (panel) panel.setAttribute('aria-labelledby', tabs[index].id);
+      syncClips();
     }
+
+    if (panel && 'IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        inView = entries[0].isIntersecting;
+        syncClips();
+      }).observe(panel);
+    } else {
+      inView = true;
+      syncClips();
+    }
+
+    reduceMotion.addEventListener('change', syncClips);
+
+    clips.forEach(function (clip, i) {
+      clip.addEventListener('ended', function () {
+        if (i === active) select((i + 1) % clips.length);
+      });
+    });
 
     tabs.forEach(function (tab, i) {
       tab.addEventListener('click', function () {

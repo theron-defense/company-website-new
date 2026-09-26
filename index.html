@@ -41,7 +41,7 @@
 
   <main>
     <section class="hero" id="top">
-      <video class="hero-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+      <video class="hero-video" autoplay muted playsinline preload="auto" aria-hidden="true">
         <source src="assets/hero-loop.mp4" type="video/mp4">
       </video>
       <div class="hero-scrim" aria-hidden="true"></div>
@@ -143,14 +143,14 @@
 
     <section class="bg-paper py-[clamp(3rem,7vw,5rem)]" id="vision">
       <div class="vision-layout mx-auto w-[min(100%-2.5rem,1280px)]">
-        <div class="vision-plate reveal-group" id="vision-stage" role="tabpanel" aria-labelledby="vision-tab-2">
+        <div class="vision-plate reveal-group" id="vision-stage" role="tabpanel" aria-labelledby="vision-tab-0">
           <div class="vision-marks" aria-hidden="true">
             <span></span><span></span><span></span><span></span>
           </div>
           <div class="vision-stage reveal">
-            <img src="assets/vision/actuator-assembled.png" alt="Actuator assembly, plan view" width="501" height="440" loading="lazy" decoding="async">
-            <img src="assets/vision/actuator-exploded.png" alt="Actuator, exploded view" width="298" height="444" loading="lazy" decoding="async">
-            <img src="assets/vision/actuator-exploded-45.png" alt="Actuator, exploded view at 45 degrees" class="is-active" width="409" height="448" loading="lazy" decoding="async">
+            <video src="assets/vision/thermal-detection.mp4" poster="assets/vision/thermal-detection.jpg" class="is-active" width="640" height="512" muted playsinline preload="metadata" aria-label="Thermal camera: detection box on an airborne drone"></video>
+            <video src="assets/vision/thermal-slew.mp4" poster="assets/vision/thermal-slew.jpg" width="640" height="512" muted playsinline preload="none" aria-label="Thermal camera: gun mount slewing onto a drone"></video>
+            <video src="assets/vision/thermal-crosshair.mp4" poster="assets/vision/thermal-crosshair.jpg" width="640" height="512" muted playsinline preload="none" aria-label="Thermal camera: drone held at the crosshair"></video>
           </div>
         </div>
         <div class="vision-copy prose-col text-[1.05rem] leading-[1.75] reveal-group">
@@ -171,15 +171,15 @@
             We are only at the beginning of this story.
           </p>
         </div>
-        <div class="vision-thumbs reveal-group" role="tablist" aria-label="Actuator drawings">
-          <button class="vision-thumb reveal" type="button" role="tab" id="vision-tab-0" aria-selected="false" aria-controls="vision-stage" tabindex="-1" aria-label="Assembled view">
-            <img src="assets/vision/actuator-assembled.png" alt="" width="501" height="440" loading="lazy" decoding="async" aria-hidden="true">
+        <div class="vision-thumbs reveal-group" role="tablist" aria-label="Thermal tracking clips">
+          <button class="vision-thumb reveal" type="button" role="tab" id="vision-tab-0" aria-selected="true" aria-controls="vision-stage" tabindex="0" aria-label="Detection">
+            <img src="assets/vision/thermal-detection.jpg" alt="" width="640" height="512" loading="lazy" decoding="async" aria-hidden="true">
           </button>
-          <button class="vision-thumb reveal" type="button" role="tab" id="vision-tab-1" aria-selected="false" aria-controls="vision-stage" tabindex="-1" aria-label="Exploded view">
-            <img src="assets/vision/actuator-exploded.png" alt="" width="298" height="444" loading="lazy" decoding="async" aria-hidden="true">
+          <button class="vision-thumb reveal" type="button" role="tab" id="vision-tab-1" aria-selected="false" aria-controls="vision-stage" tabindex="-1" aria-label="Slew to target">
+            <img src="assets/vision/thermal-slew.jpg" alt="" width="640" height="512" loading="lazy" decoding="async" aria-hidden="true">
           </button>
-          <button class="vision-thumb reveal" type="button" role="tab" id="vision-tab-2" aria-selected="true" aria-controls="vision-stage" tabindex="0" aria-label="Exploded view at 45 degrees">
-            <img src="assets/vision/actuator-exploded-45.png" alt="" width="409" height="448" loading="lazy" decoding="async" aria-hidden="true">
+          <button class="vision-thumb reveal" type="button" role="tab" id="vision-tab-2" aria-selected="false" aria-controls="vision-stage" tabindex="-1" aria-label="Crosshair lock">
+            <img src="assets/vision/thermal-crosshair.jpg" alt="" width="640" height="512" loading="lazy" decoding="async" aria-hidden="true">
           </button>
         </div>
       </div>
