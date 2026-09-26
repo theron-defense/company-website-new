@@ -189,45 +189,6 @@ main {
     );
 }
 
-.hero-button-container{
-  display: flex;
-  align-items: center;
-  gap: 1.75rem;
-  padding-top: 1.75rem;
-}
-
-.hero-btn {
-  display: inline-block;
-  font-family: var(--font-display);
-  font-size: 0.8125rem;
-  font-weight: 500;
-  letter-spacing: 0.01em;
-  text-decoration: none;
-}
-
-.hero-btn-solid {
-  border-radius: 2px;
-  background: #fff;
-  padding: 0.65rem 1.6rem;
-  color: var(--color-navy-dark);
-  transition: background-color 0.25s ease;
-}
-
-.hero-btn-solid:hover {
-  background: rgb(255 255 255 / 0.85);
-}
-
-.hero-btn-link {
-  color: #fff;
-  text-decoration: underline;
-  text-underline-offset: 6px;
-  text-decoration-thickness: 1px;
-}
-
-.hero-btn-link:hover {
-  color: rgb(255 255 255 / 0.75);
-}
-
 .hero::after {
   content: "";
   position: absolute;
@@ -268,7 +229,7 @@ main {
 .hero-corner-tl { grid-area: tl; transform: skewX(-6deg); }
 .hero-corner-tr { grid-area: tr; text-align: right; }
 .hero-corner-bl { grid-area: bl; align-self: end; }
-.hero-corner-br { grid-area: br; align-self: end; text-align: right; transform: skewX(-6deg); }
+.hero-corner-br { grid-area: br; align-self: end; text-align: right; }
 
 .hero-tagline,
 .hero-series {
@@ -297,6 +258,17 @@ main {
   color: rgb(255 255 255 / 0.92);
 }
 
+.hero-wordmark {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(0.85rem, 2vw, 2rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+  color: #fff;
+}
+
 .hero-lede {
   margin: 0;
   max-width: 30rem;
@@ -306,18 +278,6 @@ main {
   line-height: 1.65;
   color: rgb(255 255 255 / 0.9);
 }
-
-.hero-wordmark {
-  margin: 0;
-  font-family: var(--font-display);
-  font-size: clamp(0.95rem, 1.5vw, 1.25rem);
-  font-weight: 800;
-  line-height: 1;
-  letter-spacing: -0.02em;
-  text-transform: uppercase;
-  color: #fff;
-}
-
 /* —— Scroll reveals —— */
 .js .reveal {
   opacity: 0;
@@ -343,93 +303,130 @@ main {
 .js .reveal-group .reveal:nth-child(3) { --reveal-delay: 80ms; }
 .js .reveal-group .reveal:nth-child(4) { --reveal-delay: 110ms; }
 
-/* —— Field photo chapter —— */
-.photo-chapter {
+/* —— Mission —— */
+.mission {
+  --mission-ink: #ffffff;
+  --mission-ink-soft: rgba(255, 255, 255, 0.9);
+  --mission-sky: 22, 48, 104;      /* rgb of the sky tint */
+  --mission-sky-tint: 0.4;         /* 0 = natural sky, 0.85 = deep poster blue */
+  --mission-shadow: 14, 26, 43;    /* rgb of the ground scrim */
+  --mission-content: min(100vw - 2.5rem, 1280px);
+  --mission-pad-x: max(1.25rem, calc((100% - 1280px) / 2));
+
   position: relative;
-  display: flex;
-  align-items: flex-end;
-  min-height: 100svh;
+  isolation: isolate;
   overflow: hidden;
-  background: #0a1018;
-  color: #fff;
+  min-height: clamp(640px, 100vh, 960px);
+  display: flex;
+  flex-direction: column;
+  padding: clamp(40px, 5vw, 72px) var(--mission-pad-x) clamp(48px, 5.5vw, 80px);
+  box-sizing: border-box;
+  background: #33466a;
+  color: var(--mission-ink);
+  font-family: "Archivo", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-.photo-chapter-image {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: -18%;
-  height: 136%;
-  background-image: url("../assets/hero-field.jpg");
-  background-size: cover;
-  background-position: 72% center;
-  background-repeat: no-repeat;
-  will-change: transform;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .photo-chapter-image {
-    top: 0;
-    height: 100%;
-    will-change: auto;
-    transform: none;
-  }
-}
-
-.photo-chapter-scrim {
+.mission__photo {
   position: absolute;
   inset: 0;
-  background:
-    linear-gradient(
-      to right,
-      rgb(3 8 14 / 0.48) 0%,
-      rgb(3 8 14 / 0.26) 48%,
-      rgb(3 8 14 / 0.06) 100%
-    ),
-    linear-gradient(
-      to top,
-      rgb(3 8 14 / 0.32) 0%,
-      transparent 45%
-    );
+  z-index: -3;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: 50% 30%;
 }
 
-.photo-chapter-content {
-  position: relative;
-  z-index: 1;
-  width: min(100% - 2.5rem, 1280px);
-  margin: 0 auto;
-  padding: 8rem 0 6rem;
-  max-width: 40rem;
-  margin-left: max(1.25rem, calc((100% - 1280px) / 2));
-  text-shadow: 0 1px 18px rgb(3 8 14 / 0.45);
+/* Sky tint on top, dark scrim under the copy */
+.mission::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background: linear-gradient(
+    180deg,
+    rgba(var(--mission-sky), var(--mission-sky-tint)) 0%,
+    rgba(var(--mission-sky), 0) 34%,
+    rgba(var(--mission-shadow), 0) 56%,
+    rgba(var(--mission-shadow), 0.7) 100%
+  );
 }
 
-.photo-chapter-content .eyebrow {
-  color: rgb(255 255 255 / 0.88);
-  margin: 0 0 1.25rem;
-  font-size: 11px;
-  letter-spacing: 0.14em;
+.mission__top {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  gap: 24px;
 }
 
-.photo-chapter-content h2 {
-  margin: 0 0 1rem;
-  font-family: var(--font-display);
-  font-size: clamp(1.85rem, 3vw, 2.5rem);
-  font-weight: 500;
-  line-height: 1.15;
-  letter-spacing: -0.025em;
-  color: #fff;
+.mission__program {
+  text-align: right;
 }
 
-.photo-chapter-content p {
+.mission__title {
   margin: 0;
-  max-width: 36ch;
+  font-size: clamp(22px, 2.1vw, 30px);
+  line-height: 1;
+  font-weight: 800;
+  font-stretch: 70%;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.mission__kicker {
+  margin: 8px -0.14em 0 0;
   font-family: var(--font-display);
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.7;
-  letter-spacing: -0.01em;
-  color: rgb(255 255 255 / 0.94);
+  color: var(--mission-ink-soft);
+}
+
+.mission__body {
+  margin-top: auto;
+  max-width: 470px;
+}
+
+.mission__lead {
+  margin: 0;
+  /* One line at every width: the headline runs ~15em wide. */
+  font-size: min(30px, calc(var(--mission-content) / 16));
+  white-space: nowrap;
+  line-height: 1.05;
+  font-weight: 800;
+  font-stretch: 70%;
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+}
+
+.mission__text {
+  margin: 14px 0 0;
+  font-size: 17px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+/* Phones: keep the figure and turret in frame, give the copy more scrim */
+@media (max-width: 720px) {
+  .mission {
+    --mission-sky-tint: 0.5;
+    min-height: 100svh;
+  }
+  .mission__photo {
+    object-position: 68% 30%;
+  }
+  .mission::before {
+    background: linear-gradient(
+      180deg,
+      rgba(var(--mission-sky), var(--mission-sky-tint)) 0%,
+      rgba(var(--mission-sky), 0) 30%,
+      rgba(var(--mission-shadow), 0) 45%,
+      rgba(var(--mission-shadow), 0.82) 100%
+    );
+  }
+  .mission__top {
+    justify-content: flex-start;
+  }
+  .mission__text {
+    font-size: 16px;
+  }
 }
 
 main h3 {
@@ -1047,22 +1044,8 @@ main p {
     max-width: 40rem;
   }
 
-  .hero-button-container {
-    gap: 1.25rem;
-  }
-
   .hero::after {
     animation: none;
-  }
-
-  .photo-chapter {
-    min-height: 85svh;
-  }
-
-  .photo-chapter-content {
-    padding: 6rem 0 4rem;
-    margin-left: auto;
-    margin-right: auto;
   }
 
   .brand-lockup {

@@ -9,8 +9,8 @@
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Schibsted+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=21">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=Inter:wght@400;500;600&family=Schibsted+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css?v=34">
   <script>
     document.documentElement.classList.add('js');
   </script>
@@ -47,11 +47,9 @@
       <div class="hero-scrim" aria-hidden="true"></div>
       <div class="hero-content">
         <div class="hero-corner hero-corner-bl reveal-group">
-          <p class="hero-lede reveal">Fully autonomous products, usable in the field today. We work towards the final weapon, an AI system protecting the West.</p>
-          <div class="hero-button-container reveal">
-            <a class="hero-btn hero-btn-solid" href="#capabilities">See capabilities</a>
-            <a class="hero-btn hero-btn-link" href="#contact">Talk to our team</a>
-          </div>
+        </div>
+        <div class="hero-corner hero-corner-br reveal-group">
+          <p class="hero-wordmark reveal">Defense at scale</p>
         </div>
       </div>
     </section>
@@ -119,17 +117,27 @@
       </div>
     </section>
 
-    <section class="photo-chapter" id="mission">
-      <div class="photo-chapter-image" aria-hidden="true"></div>
-      <div class="photo-chapter-scrim" aria-hidden="true"></div>
-      <div class="photo-chapter-content reveal-group">
-        <p class="eyebrow reveal">Mission</p>
-        <h2 class="heading-section reveal">Close the Gap</h2>
-        <p class="reveal">
-          First we ship what can fight now. Fieldable, affordable
-          systems with the people who use them, on short cycles,
-          judged by real world performance.
-        </p>
+    <section class="mission" id="mission" aria-labelledby="mission-title">
+      <img
+        class="mission__photo"
+        src="assets/mission-field.jpg"
+        alt="A Theron team member kneels beside the autonomous turret mounted on a Humvee, looking out over open rangeland"
+        width="1024"
+        height="768"
+        loading="lazy"
+        decoding="async"
+      >
+
+      <div class="mission__top">
+        <div class="mission__program">
+          <h2 class="mission__title" id="mission-title">Close the gap</h2>
+          <p class="eyebrow mission__kicker">Theron&rsquo;s mission</p>
+        </div>
+      </div>
+
+      <div class="mission__body">
+        <p class="mission__lead">First we ship what can fight now.</p>
+        <p class="mission__text">Fieldable, affordable systems with the people who use them, on short cycles, judged by real world performance.</p>
       </div>
     </section>
 
@@ -262,7 +270,7 @@
     </div>
   </footer>
 
-  <script src="js/main.js?v=7"></script>
+  <script src="js/main.js?v=8"></script>
   <script src="js/vendor/three.min.js"></script>
   <script type="module" src="js/capabilities/index.js?v=5"></script>
 </body>
