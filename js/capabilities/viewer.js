@@ -112,6 +112,9 @@ export function createViewer(viewer, canvas, count) {
       camEl += (am.view.el - camEl) * k(DAMP.elevation);
     }
     if (camDist !== null) {
+      camera.near = CAMERA.near * camDist;
+      camera.far = CAMERA.far * camDist;
+      camera.updateProjectionMatrix();
       camera.position.set(0, Math.sin(camEl) * camDist, Math.cos(camEl) * camDist);
       camera.lookAt(0, camDist * (wideMq.matches ? -0.025 : 0.02), 0);
       renderer.render(scene, camera);

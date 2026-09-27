@@ -45,7 +45,7 @@ export default [
   {
     id: 'drive-motor',
     title: 'Brushless drive motor',
-    view: { el: 0.12, tilt: [0.3, -0.5], yaw0: 0, zoom: 0.95 },
-    source: { type: 'procedural', build: buildDriveMotor }
+    view: { el: 0.30, tilt: [0, 0], yaw0: 0.6, zoom: 1.25 },
+    source: { type: 'gltf', url: 'assets/models/test-engine.glb', edgeThreshold: 40 }
   }
 ];

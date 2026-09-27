@@ -617,6 +617,124 @@ main p {
   margin-top: 1.25rem;
 }
 
+.about-seq {
+  --about-h1: clamp(130px, 16vw, 230px);
+  --about-h2: clamp(165px, 20.8vw, 300px);
+  --about-h3: clamp(220px, 28.5vw, 410px);
+  --about-caption: 3.25rem;
+
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-top: clamp(3.5rem, 6.1vw, 5.5rem);
+}
+
+.about-seq-grid {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  left: clamp(-8rem, -6vw, -1.25rem);
+  top: -2.5rem;
+  bottom: 0;
+  width: min(1100px, 90%);
+  background-image:
+    linear-gradient(rgb(11 61 107 / 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(11 61 107 / 0.08) 1px, transparent 1px);
+  background-size: 20px 20px;
+  -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 45%, transparent 78%);
+  mask-image: linear-gradient(90deg, #000 0%, #000 45%, transparent 78%);
+}
+
+.about-seq-ground {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  left: -100vw;
+  right: -100vw;
+  bottom: var(--about-caption);
+  height: 1px;
+  background: rgb(7 42 74 / 0.28);
+}
+
+.about-seq-item {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2.125rem;
+  margin: 0;
+}
+
+.about-seq-item--drawing .about-seq-media {
+  padding-left: 1.5rem;
+}
+
+.about-seq-media svg {
+  display: block;
+  overflow: visible;
+  width: auto;
+  aspect-ratio: 360 / 370;
+}
+
+.about-draw {
+  height: var(--about-h1);
+}
+
+.about-model {
+  height: var(--about-h2);
+}
+
+.about-photo {
+  height: var(--about-h3);
+  aspect-ratio: 843 / 918;
+}
+
+.about-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.about-seq figcaption {
+  display: flex;
+  gap: 0.625rem;
+  align-items: baseline;
+  font-family: var(--font-display);
+  font-size: 0.875rem;
+  line-height: 1.125rem;
+  color: var(--color-ink);
+}
+
+.about-seq figcaption b {
+  font-weight: 600;
+  color: var(--color-navy-light);
+}
+
+@media (max-width: 47.99rem) {
+  .about-seq {
+    --about-h1: 120px;
+    --about-h2: 150px;
+    --about-h3: min(92vw, 380px);
+
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    row-gap: 3rem;
+    column-gap: 1.5rem;
+    padding-right: 0;
+  }
+
+  .about-seq-item--photo {
+    flex-basis: 100%;
+  }
+
+  .about-seq-ground {
+    display: none;
+  }
+}
+
 /* —— Vision: drawing plate + figure selector (drawings are transparent line art) —— */
 .vision-layout {
   display: grid;

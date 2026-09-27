@@ -8,10 +8,12 @@ export var FILL = 1.12;
 // Bounding-sphere padding applied before fitting, so lines never touch the edge.
 export var FIT_PAD = 1.04;
 
+// near and far are multiples of the camera distance, so clipping holds whether
+// a model is authored in metres or exported from CAD in millimetres.
 export var CAMERA = {
   fov: 30,
-  near: 0.1,
-  far: 100,
+  near: 0.01,
+  far: 10,
   maxPixelRatio: 1.75
 };
 
